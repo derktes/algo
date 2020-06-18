@@ -11,6 +11,10 @@ func intComparator(a, b interface{}) int {
 	return 0
 }
 
+func intLess(a, b interface{}) bool {
+	return intComparator(a, b) < 0
+}
+
 func intSwapper(v []interface{}, i, j int) {
 	v[i], v[j] = v[j], v[i]
 }
@@ -36,6 +40,10 @@ func stringComparator(a, b interface{}) int {
 		return -1
 	}
 	return 0
+}
+
+func stringLess(a, b interface{}) bool {
+	return stringComparator(a, b) < 0
 }
 
 func stringSwapper(v []interface{}, i, j int) {

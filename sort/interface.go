@@ -4,6 +4,10 @@ package sort
 // comparision.
 type Comparator func(interface{}, interface{}) int
 
-// Swapper must be implemented to provide type specific
+// SwapFunc must be implemented to provide type specific
 // exchange of value.
-type Swapper func([]interface{}, int, int)
+type SwapFunc func([]interface{}, int, int)
+
+// LessFunc must be implemented to provide type specific
+// element pair comparison
+type LessFunc func(interface{}, interface{}) bool
