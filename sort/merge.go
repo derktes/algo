@@ -1,14 +1,14 @@
 package sort
 
 // Merge performs merge sort
-func Merge(val []interface{}, less LessFunc, swap SwapFunc) {
+func Merge(val []interface{}, less LessFunc) {
 	if len(val) < 2 {
 		return
 	}
 	// compute mid and (mid-1)
 	mid := len(val) / 2
-	Merge(val[:mid], less, swap)
-	Merge(val[mid:], less, swap)
+	Merge(val[:mid], less)
+	Merge(val[mid:], less)
 	//fmt.Printf("sub-merge: %v\n", val[:mid])
 	//fmt.Printf("sub-merge: %v\n", val[mid:])
 	valCopy := make([]interface{}, len(val))
