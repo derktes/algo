@@ -5,13 +5,30 @@ import (
 )
 
 func TestSelectionSortInt(t *testing.T) {
-	values, expectedValues := loadComparableIntSlice()
-	Selection(values, intLess, intSwapper)
-	expectSliceEqual(t, expectedValues, values)
+	cases := loadIntCases()
+	for _, c := range cases {
+		Selection(c.in,
+			func(a, b interface{}) bool {
+				return a.(int) < b.(int)
+			},
+			func(v []interface{}, i, j int) {
+				v[i], v[j] = v[j], v[i]
+			})
+		expectSliceEqual(t, c.want, c.in)
+	}
 }
 
 func TestSelectionSortString(t *testing.T) {
-	values, expectedValues := loadComparableStringSlice()
-	Selection(values, stringLess, stringSwapper)
-	expectSliceEqual(t, expectedValues, values)
+	cases := loadStringCases()
+	for _, c := range cases {
+		Selection(c.in,
+			func(a, b interface{}) bool {
+				return a.(string) < b.(string)
+			},
+			func(v []interface{}, i, j int) {
+				v[i], v[j] = v[j], v[i]
+			})
+		expectSliceEqual(t, c.want, c.in)
+
+	}
 }

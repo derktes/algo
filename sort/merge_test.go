@@ -6,9 +6,17 @@ func TestMergeSort(t *testing.T) {
 	cases := loadIntCases()
 	for _, c := range cases {
 		Merge(c.in, func(a, b interface{}) bool {
-			x := a.(int)
-			y := b.(int)
-			return x < y
+			return a.(int) < b.(int)
+		}, nil)
+		expectSliceEqual(t, c.want, c.in)
+	}
+}
+
+func TestMergeSortString(t *testing.T) {
+	cases := loadStringCases()
+	for _, c := range cases {
+		Merge(c.in, func(a, b interface{}) bool {
+			return a.(string) < b.(string)
 		}, nil)
 		expectSliceEqual(t, c.want, c.in)
 	}
