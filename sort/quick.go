@@ -1,5 +1,6 @@
 package sort
 
+// Quick perform quick sort
 func Quick(val []interface{}, less LessFunc, swap SwapFunc) {
 	subSort(val, less, swap)
 }
