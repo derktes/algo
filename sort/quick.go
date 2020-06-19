@@ -27,10 +27,9 @@ func subSort(val []interface{}, less LessFunc, swap SwapFunc) {
 		}
 		if i <= j {
 			swap(val, i, j)
-		} else {
-			swap(val, k, j)
 		}
 	}
+	swap(val, k, j)
 	subSort(val[:j], less, swap)
 	subSort(val[(j+1):], less, swap)
 }
