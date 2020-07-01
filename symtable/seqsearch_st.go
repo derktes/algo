@@ -58,3 +58,8 @@ func (st *SequentialSearchST) Keys() ([]string, error) {
 	}
 	return nil, ErrNoKeys
 }
+
+func (st *SequentialSearchST) Contains(key string) bool {
+	_, err := st.Get(key)
+	return err == nil
+}
