@@ -32,8 +32,8 @@ func setupAndTest(t *testing.T, cases []testCase) {
 func TestPutMultiple(t *testing.T) {
 	cases := []testCase{
 		{
-			[]keyValue{{'E', 0}, {'A', 1}, {'R', 2}},
-			[]keyValue{{'E', 0}, {'A', 1}, {'R', 2}},
+			[]keyValue{{"E", 0}, {"A", 1}, {"R", 2}},
+			[]keyValue{{"E", 0}, {"A", 1}, {"R", 2}},
 		},
 	}
 	setupAndTest(t, cases)
@@ -42,8 +42,8 @@ func TestPutMultiple(t *testing.T) {
 func TestUpdateWithPut(t *testing.T) {
 	cases := []testCase{
 		{
-			[]keyValue{{'B', 3}, {'Z', 4}, {'T', -2}, {'P', 6}, {'T', 5}},
-			[]keyValue{{'B', 3}, {'Z', 4}, {'T', 5}, {'P', 6}},
+			[]keyValue{{"B", 3}, {"Z", 4}, {"T", -2}, {"P", 6}, {"T", 5}},
+			[]keyValue{{"B", 3}, {"Z", 4}, {"T", 5}, {"P", 6}},
 		},
 	}
 	setupAndTest(t, cases)
@@ -51,7 +51,7 @@ func TestUpdateWithPut(t *testing.T) {
 
 func TestGetOnEmpty(t *testing.T) {
 	st := New()
-	_, err := st.Get('A')
+	_, err := st.Get("A")
 	if err == nil {
 		t.Log("After Get on empty symbol table, err != nil")
 		t.Fatalf("Error encountered is '%s'", err)
@@ -61,8 +61,8 @@ func TestGetOnEmpty(t *testing.T) {
 func TestKeysSorted(t *testing.T) {
 	cases := []testCase{
 		{
-			[]keyValue{{'Y', 0}, {'M', 0}, {'C', 0}, {'A', 0}},
-			[]keyValue{{'A', 0}, {'C', 0}, {'M', 0}, {'Y', 0}},
+			[]keyValue{{"Y", 0}, {"M", 0}, {"C", 0}, {"A", 0}},
+			[]keyValue{{"A", 0}, {"C", 0}, {"M", 0}, {"Y", 0}},
 		},
 	}
 	for _, c := range cases {

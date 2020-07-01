@@ -12,7 +12,7 @@ var (
 )
 
 type keyValue struct {
-	key   byte
+	key   string
 	value int
 }
 
@@ -24,7 +24,7 @@ func New() *SequentialSearchST {
 	return &SequentialSearchST{list.New()}
 }
 
-func (st *SequentialSearchST) Get(key byte) (int, error) {
+func (st *SequentialSearchST) Get(key string) (int, error) {
 	for e := st.ls.Front(); e != nil; e = e.Next() {
 		kv := e.Value.(*keyValue)
 		if kv.key == key {
@@ -34,7 +34,7 @@ func (st *SequentialSearchST) Get(key byte) (int, error) {
 	return 0, ErrValueNotFound
 }
 
-func (st *SequentialSearchST) Put(key byte, val int) {
+func (st *SequentialSearchST) Put(key string, val int) {
 	for e := st.ls.Front(); e != nil; e = e.Next() {
 		kv := e.Value.(*keyValue)
 		if kv.key == key {
@@ -45,20 +45,15 @@ func (st *SequentialSearchST) Put(key byte, val int) {
 	st.ls.PushFront(&keyValue{key, val})
 }
 
-func (st *SequentialSearchST) Keys() ([]byte, error) {
+func (st *SequentialSearchST) Keys() ([]string, error) {
 	size := st.ls.Len()
-	ikeys := make([]int, 0, size)
+	keys := make([]string, 0, size)
 	for e := st.ls.Front(); e != nil; e = e.Next() {
 		kv := e.Value.(*keyValue)
-		ikeys = append(ikeys, int(kv.key))
+		keys = append(keys, kv.key)
 	}
-	if len(ikeys) > 0 {
-		islice := sort.IntSlice(ikeys)
-		islice.Sort()
-		keys := make([]byte, 0, size)
-		for _, k := range ikeys {
-			keys = append(keys, byte(k))
-		}
+	if len(keys) > 0 {
+		sort.StringSlice(keys).Sort()
 		return keys, nil
 	}
 	return nil, ErrNoKeys
