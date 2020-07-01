@@ -1,3 +1,3 @@
-module github.com/derktes/algo/symtable
+module github.com/derktes/algo
 
 go 1.14
